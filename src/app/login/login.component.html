@@ -1,0 +1,102 @@
+<style>
+    .bgPajak{
+        background-image: url("https://www.sbm.itb.ac.id/wp-content/uploads/2021/11/FEATURE-IMAGE-II-58.png");
+        background-size: cover;
+    }
+    .bgA10{
+        background-color: rgba(255, 255, 255, 0.3);
+    }
+    .bgH{
+        background-color: #4c62c3;
+    }
+</style>
+
+<header class="p-3 mb-4 border-bottom bgH">
+    <a href="/" class="d-flex align-items-center text-dark text-decoration-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="32" class="me-2  text-white" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
+    <span class="fs-4  text-white">{{title}}</span>
+    </a>
+</header> 
+<div class="p-4 p-md-5 mb-4 rounded text-body-emphasis ">
+    <div class="col-lg-6 px-0">
+      <h1 class="display-4 fst-italic">Spesialis Keuangan</h1>
+      <p class="lead my-3">setoran bulanan sesuai dengan sumber penerimaan negara beserta lokasi (district) yang diberikan</p>
+     </div>
+</div>
+<div class="row align-items-md-stretch bgPajak">
+    <div class="col-md-6">
+      <div class="h-100 p-5 text-white rounded-3"> </div>
+    </div>
+    <div class="col-md-6">
+      <div class="h-100 p-5 bgA10 border rounded-3 ">
+        <form > 
+            <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            
+            <div class="form-floating pb-2">
+              <input type="email" class="form-control" id="floatingInput" [formControl]="username"  placeholder="12344222">
+              <label for="floatingInput">Username</label>
+            </div>
+            <div class="form-floating  pb-2">
+              <input type="password" class="form-control" id="floatingPassword" [formControl]="pass" placeholder="Password">
+              <label for="floatingPassword">Password</label>
+            </div>
+        
+            <div class="checkbox mb-3">
+              <label>
+                <input type="checkbox" value="remember-me"> Remember me
+              </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary" (click)="login()">Sign in</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+        </form>
+      </div>
+    </div>
+</div> 
+<div class="bg-body-secondary">
+    <footer class="container py-5 ">
+        <div class="row">
+          <div class="col-12 col-md">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="d-block mb-2" role="img" viewBox="0 0 24 24"><title>Product</title><circle cx="12" cy="12" r="10"></circle><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94"></path></svg>
+            <small class="d-block mb-3 text-body-secondary">© 2017–2024</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Penerimaan Pajak </h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Stuff for developers</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Another one</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Last time</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Penerimaan Pajak Daerah</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Final resource</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Penerimaan Bukan Pajak</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="link-secondary text-decoration-none" href="#">Business</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Education</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Government</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Gaming</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Informasi</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+              <li><a class="link-secondary text-decoration-none" href="#">Terms</a></li>
+            </ul>
+          </div>
+        </div>
+    </footer>
+</div>

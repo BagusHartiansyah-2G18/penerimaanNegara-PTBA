@@ -1,0 +1,68 @@
+
+<div class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
+      <img class="me-3" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+      <div class="lh-1">
+        <h1 class="h6 mb-0 text-white lh-1">Dashboard</h1>
+        <small>Kabupaten, Kota dan Provinsi</small>
+      </div>
+    </div>
+    
+    <div class="my-3 p-3   rounded text-white bg-secondary shadow-sm"> 
+        <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2  mb-2">
+            <h6 class=" pb-2 mb-0"><b>Total Perbulan</b></h6>
+            <div class="btn-group" style="max-width: 200px;"> 
+                <select class="form-select mb-2" [value]="year"  aria-label="Default select example" (change)="onc_tahun($event)">
+                     <option *ngFor="let option of dtahun; let i=index" value="{{option}}">
+                        {{option}}
+                    </option> 
+                </select>
+             </div>
+        </div>
+        <div class="card">
+            <p-chart type="bar" [data]="data" [options]="options" />
+        </div>
+    </div>
+
+    <div class="my-3 text-white rounded shadow bg-dark m-2">
+        <div class="row  row-cols-md-2 justify-content-between border-bottom align-items-center p-2  mb-2">
+            <h6 class=" pb-2 mb-0"><b>Hasil Penerimaan Negara</b></h6>
+            <div class="btn-group" role="group" style="max-width: 400px;"> 
+                <button type="button" class="btn btn-info" (click)="exportexcel()">Excell</button>
+                <button type="button" class="btn btn-danger" (click)="downloadPDF()">PDF</button> 
+            </div>
+        </div>
+           <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2"> 
+              <div class="col">
+              </div>
+              <div class="col">
+                  <div class="form-floating pb-2">
+                      <input type="email" class="form-control text-dark" id="floatingInput" [formControl]="search"  (change)="searchList()" placeholder="search">
+                      <label for="floatingInput">Search</label>
+                  </div>
+              </div>
+          </div>
+        <table class="table" id="excel-table" style="overflow: auto; height: 100px;">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Wilayah</th>
+              <th scope="col">Total</th>
+              <th scope="col">Kabupaten</th> 
+              <th scope="col">provinsi</th>
+              <th scope="col">Pusat</th> 
+            </tr>
+          </thead>
+          <tbody>
+              <tr  *ngFor="let v of dsetor; let i=index" >
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{v.nmProv}} <br/> {{v.nmKab}} </td>
+                  <td>{{toUang(v.total)}}</td> 
+                  <td>{{hitungPersen(v.total,v.kabP)}}</td> 
+                  <td>{{hitungPersen(v.total,v.provP)}}</td>
+                  <td>{{hitungPersen(v.total,v.pusatP)}}</td>
+              </tr>
+          </tbody>
+        </table>
+    </div> 
+</div>

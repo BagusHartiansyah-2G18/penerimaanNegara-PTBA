@@ -1,0 +1,85 @@
+<div class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
+      <img class="me-3" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+      <div class="lh-1">
+        <h1 class="h6 mb-0 text-white lh-1">Wilaya Setoran</h1>
+        <small>Kabupaten, Kota dan Provinsi</small>
+      </div>
+    </div>
+
+    <div class="my-3 p-3   rounded text-white bg-secondary shadow-sm"> 
+        <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2">
+            <h6 class=" pb-2 mb-0"><b>Form Entri Kabupatan - Kota</b></h6>
+            <div class="btn-group" style="max-width: 200px;">
+                <button class="btn btn-light {{(dform.on?'active':'')}}" aria-current="page" (click)="changeForm()">Form</button>
+             </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-2  m-2">
+            <div class="col" style="background-image: url('https://i.pinimg.com/originals/cc/44/46/cc4446084587530246958d7e547285b8.png'); background-size: cover;">
+                  
+            </div>
+            <div class="col ">  
+                <div class=" ">
+                    <label for="firstName" class="form-label">Pilih Provinsi</label>
+                    <select class="form-select mb-2" [value]="kdProv"  aria-label="Default select example" (change)="oncProvinsi($event)">
+                        <option value="">Belum dipilih</option>
+                        <option *ngFor="let option of dprov; let i=index" value="{{option.kdProv}}">
+                            {{option.nmProv}}
+                        </option> 
+                    </select>
+                </div>
+                <div class=" ">
+                    <label for="firstName" class="form-label">Nama Kabupatan / Kota</label>
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" id="floatingInput" [formControl]="nmKab"  placeholder="Bagus H">
+                        <label for="floatingInput">Kabupatan / Kota</label>
+                    </div>
+                </div>
+                <button *ngIf="dform.ins" class="w-100 btn btn-lg btn-primary" (click)="addForm()">Simpan</button>
+                <button *ngIf="!dform.ins" class="w-100 btn btn-lg btn-warning" (click)="updFormed()">Perbarui</button>
+            </div>
+        </div> 
+    </div>
+
+    <div class="my-3 text-white rounded shadow bg-dark">
+        <h6 class="border-bottom  p-3 pb-2 mb-2" style="border-color: rgb(78, 131, 141) !important;"><b>Data Kabupaten - Kota</b></h6>
+          <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2">
+              
+              <div class="col">
+                  <div class="btn-group me-2" role="group" aria-label="First group"> 
+                      <button type="button" class="btn btn-warning">Perbarui</button>
+                      <button type="button" class="btn btn-danger">Hapus</button> 
+                  </div>
+              </div>
+              <div class="col">
+                  <div class="form-floating pb-2">
+                      <input type="email" class="form-control text-dark" id="floatingInput" [formControl]="search"  (change)="searchList()" placeholder="search">
+                      <label for="floatingInput">Search</label>
+                  </div>
+              </div>
+          </div>
+        <table class="table  " style="overflow: auto; height: 100px;">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Provinsi</th>
+              <th scope="col">Kabupaten</th> 
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr  *ngFor="let v of lkab; let i=index" >
+                  <th scope="row">{{i+1}}</th>
+                  <td>{{v.nmProv}}</td>
+                  <td>{{v.nmKab}}</td> 
+                  <td>
+                      <div class="btn-group me-2" role="group" aria-label="First group">
+                          <button type="button" class="btn btn-warning" (click)="updForm(i)"><i class="bi bi-pencil-square"></i></button>
+                          <button type="button" class="btn btn-danger" (click)="delForm(i)"><i class="bi bi-trash3-fill"></i></button> 
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+      </div> 
+</div>

@@ -1,0 +1,171 @@
+<div class="container">
+    <div class="d-flex align-items-center p-3 my-3 text-white bg-dark rounded shadow-sm">
+      <img class="me-3" src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo-white.svg" alt="" width="48" height="38">
+      <div class="lh-1">
+        <h1 class="h6 mb-0 text-white lh-1"> Data Setoran</h1>
+        <small>Sumber Penerimaan Negara</small>
+      </div>
+    </div>
+    
+    <div class="my-3 p-3   rounded text-white bg-secondary shadow-sm"> 
+        <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2">
+            <h6 class=" pb-2 mb-0"><b>Form - Informasi Setoran</b></h6>
+            <div class="btn-group" style="max-width: 200px;">
+                <button class="btn btn-light {{(dform.on?'active':'')}}" aria-current="page" (click)="changeForm()">Form</button>
+                <button class="btn btn-light {{(!dform.on?'active':'')}}">Informasi</button> 
+             </div>
+        </div>
+        <div *ngIf="dform.on" class="row row-cols-1 row-cols-md-2  m-2">
+            <div class="col" style="background-image: url('https://flazztax.com/wp-content/uploads/2021/10/Ketahui-Apa-Itu-Pajak-Fungsi-dan-Perannya.png'); background-size: cover;">
+                 
+            </div>
+            <div class="col ">   
+                <div class=" ">
+                    <label for="firstName" class="form-label">Pilih Uraian Sumber Penerimaan</label>
+                    <div class="btn-group container-fluid pb-2 " style=" padding-left: 0px; padding-right: 0px;">
+                        <button class="btn btn-light dropdown-toggle show" (click)="filterDropdown('')"
+                        type="button" id="dropdownMenuClickableOutside" data-bs-toggle="dropdown" data-bs-auto-close="inside" aria-expanded="true">
+                        
+                        <label *ngIf="!selUraian">Pilih Uraian</label>
+                        <label *ngIf="selUraian">{{selUraian.nmSS}}</label>
+                        
+                        </button>  
+                        <ul class="dropdown-menu container-fluid " aria-labelledby="dropdownMenuClickableOutside" data-popper-placement="bottom-start" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(0px, 40px);">
+                        <li>
+                            <input type="text" class="w-100 p-2 searchInput" placeholder="Nama uraian..." (change)="filterDropdown('bgs')"    [formControl]="search">
+                        </li> 
+                        <li>
+                            <a *ngFor="let option of lsub; let i=index" class="dropdown-item pointer text-contain"
+                            [ngClass]="{'alternateBackground': i%2 == 0 }" (click)="sel_uraian(i)">
+                                <label><small>{{option.nmKS}}</small> <br/> <b>{{option.nmSS}}</b></label>
+                            </a>
+                        </li>
+                        <li  *ngIf="lsub.length <=0">No expert found</li>
+                        </ul>
+                    </div> 
+                </div>
+                <div class=" ">
+                    <label for="firstName" class="form-label">Tanggal</label>
+                    <div class="form-floating pb-2">
+                        <input type="date" maxlength="3" class="form-control" id="floatingInput" [formControl]="dateS"  placeholder="">
+                        <label for="floatingInput">Setoran</label>
+                    </div>
+                </div>
+                <div class=" ">
+                    <label for="firstName" class="form-label">Totol</label>
+                    <div class="form-floating pb-2">
+                        <input type="number" maxlength="3" class="form-control" id="floatingInput" [formControl]="total"  placeholder="10000">
+                        <label for="floatingInput">Setoran</label>
+                    </div>
+                </div>
+                
+                <button *ngIf="dform.ins" class="w-100 btn btn-lg btn-primary" (click)="clk_add()">Simpan</button>
+                <button *ngIf="!dform.ins" class="w-100 btn btn-lg btn-warning" (click)="clk_upd()">Perbarui</button>
+            </div>
+        </div> 
+        <div>
+            <div *ngIf="!dform.on" class="row row-cols-1 row-cols-md-2  m-2">
+                <div class="col">
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{dstor[dform.idt].nmProv}}" disabled id="floatingInput">
+                        <label for="floatingInput">Nama Provinsi</label>
+                    </div>
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{dstor[dform.idt].nmKab}}" disabled id="floatingInput">
+                        <label for="floatingInput">Nama Kabupaten</label>
+                    </div>
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{(dstor[dform.idt].realKSKet!=''? (dstor[dform.idt].realKSKet):'' )}} {{ dstor[dform.idt].nmKS+' /'+dstor[dform.idt].nmSS}}" disabled id="floatingInput">
+                        <label for="floatingInput">Kategori</label>
+                    </div>
+                </div>
+                <div class="col ">  
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{dstor[dform.idt].nama}}" disabled id="floatingInput">
+                        <label for="floatingInput">A.n</label>
+                    </div>
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{dstor[dform.idt].dateS}}" disabled id="floatingInput">
+                        <label for="floatingInput">Tanggal</label>
+                    </div>
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{toUang(dstor[dform.idt].total)}}" disabled id="floatingInput">
+                        <label for="floatingInput">Setoran</label>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="!dform.on" class="row row-cols-1 row-cols-md-3  m-2">
+                <div class="col">
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{hitungPersen(dstor[dform.idt].total,dstor[dform.idt].kabP)}}" disabled id="floatingInput">
+                        <label for="floatingInput">Kabupaten</label>
+                    </div>
+                     
+                </div>
+                <div class="col ">  
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{hitungPersen(dstor[dform.idt].total,dstor[dform.idt].provP)}}" disabled id="floatingInput">
+                        <label for="floatingInput">Provinsi</label>
+                    </div>
+                     
+                </div>
+                <div class="col ">  
+                    <div class="form-floating pb-2">
+                        <input type="email" class="form-control" value="{{hitungPersen(dstor[dform.idt].total,dstor[dform.idt].pusatP)}}" disabled id="floatingInput">
+                        <label for="floatingInput">Pusat</label>
+                    </div>
+                     
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="my-3 text-white rounded shadow bg-dark">
+        <h6 class="border-bottom  p-3 pb-2 mb-2" style="border-color: rgb(78, 131, 141) !important;"><b>Data Setoran</b></h6>
+          <div class="row row-cols-md-2 justify-content-between border-bottom align-items-center p-2">
+              
+              <div class="col">
+                    <div class="btn-group me-2" role="group" aria-label="First group"> 
+                        <button type="button" class="btn btn-info">Informasi</button>
+                      <button type="button" class="btn btn-warning">Perbarui</button>
+                      <button type="button" class="btn btn-danger">Hapus</button> 
+                    </div>
+              </div>
+              <div class="col">
+                  <div class="form-floating pb-2">
+                    <!-- (change)="searchList()" -->
+                      <input type="email" class="form-control text-dark" id="floatingInput" [formControl]="search"  placeholder="search">
+                      <label for="floatingInput">Search</label>
+                  </div>
+              </div>
+          </div>
+        <table class="table  " style="overflow: auto; height: 100px;">
+          <thead>
+            <tr>
+              <th scope="col">No</th>
+              <th scope="col">Kabupaten</th>
+              <th scope="col">Nama</th> 
+              <th scope="col">Total</th> 
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr  *ngFor="let v of dstor; let i=index" >
+                  <th scope="row">{{i+1}}</th>
+                  <td><small>{{v.nmProv}}</small> <br> <b>{{v.nmKab}}</b></td>
+                  <td> <small>{{v.nmSS}}</small> <br> <b>{{v.nama}}</b> </td> 
+                  <td> <small>{{v.dateS}}</small> <br> <b>{{toUang(v.total)}}</b> </td> 
+                  <td>
+                      <div class="btn-group me-2" role="group" aria-label="First group">
+                        <button type="button" class="btn btn-info" (click)="clk_setInfo(i)"><i class="bi bi-info-circle"></i></button>
+                        <button type="button" class="btn btn-warning" (click)="clk_setUpd(i)"><i class="bi bi-pencil-square"></i></button>
+                        <button type="button" class="btn btn-danger" (click)="clk_setDel(i)"><i class="bi bi-trash3-fill"></i></button> 
+                      </div>
+                  </td>
+              </tr>
+          </tbody>
+        </table>
+    </div> 
+</div>
