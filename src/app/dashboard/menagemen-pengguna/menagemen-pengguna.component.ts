@@ -105,13 +105,11 @@ export class MenagemenPenggunaComponent implements OnInit {
       
       const dawal = [...this.duser][this.dform.idt];  
       model.kdUser = String(dawal.kdUser); 
-      model.xkdKab = dawal.kdKab;
-      model.xkdProv = dawal.kdProv;
       this.epengguna.updPengguna(model)?.subscribe({
           next: (v) => {  
             this.duser=[...v]; 
             this.reset(); 
-            // this.duser[this.dform.idt]={...model, nmProv:dawal.nmProv, nmKab: dawal.nmKab};
+            this.toast.success("Berhasil Memperbarui data...","Informasi");
            },
       });   
     } 
@@ -120,12 +118,11 @@ export class MenagemenPenggunaComponent implements OnInit {
     const { kdProv, kdKab, pass,kdUser } = this.duser[ind]; 
 
     const model =<Mpengguna>{};  
-    model.kdUser = kdUser; 
-    model.kdKab = kdKab;
-    model.kdProv = kdProv;
+    model.kdUser = kdUser;  
     this.epengguna.delPengguna(model)?.subscribe({
         next: (v) => {  
           this.duser = [...this.duser].filter((v1,i1)=>i1!=ind);
+          this.toast.success("Berhasil Menghapus data...","Informasi");
         },
     }); 
 

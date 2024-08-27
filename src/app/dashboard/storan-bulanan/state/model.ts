@@ -37,7 +37,7 @@ export class Esetoran { // exec yang berhubungan dengan login
   _setor( x:Msetoran){
     const token =Mbase.__storage("token");
     const {kdUser,kdProv,kdRA,kdKab} = JSON.parse(atob(String(token).split('.')[1])); 
-    x.kdUser =String(kdUser+"|"+kdProv+"|"+kdKab+"|"+kdRA);
+    x.kdUser =String(kdUser);
     return this._httpClient
       .post<Msetoran[]>(`${Mbase.url("auth/setsetor")}`,{...x}) 
       .pipe(
@@ -57,9 +57,7 @@ export class Esetoran { // exec yang berhubungan dengan login
   }
   delsetor( x:Msetoran){
     return this._httpClient
-      .post<Msetoran[]>(`${Mbase.url("auth/delsetor")}`,{  
-        kdSetoran:x.kdSetoran
-      }) 
+      .post<Msetoran[]>(`${Mbase.url("auth/delsetor")}`,{...x}) 
       .pipe(
           map(v =>{     
             return v; 

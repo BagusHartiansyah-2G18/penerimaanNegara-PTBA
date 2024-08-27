@@ -23,6 +23,7 @@ export class DashboardComponent implements OnInit {
   ){}
 
   dsetor:any;
+  dgrafik:any;
   
   data: any;
 
@@ -33,7 +34,7 @@ export class DashboardComponent implements OnInit {
     ins:1
   }
   year:string='';
-  bulan:any=['Jan', 'Feb=', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Ock','Nov','Des'];
+  bulan:any=['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sep','Ock','Nov','Des'];
 
   dtahun :any=[];
 
@@ -47,6 +48,7 @@ export class DashboardComponent implements OnInit {
 
   onc_tahun(e:Event){
     this.year = String((e.target as HTMLSelectElement).value);
+    this.runGrafik(this.dsetor,this.year);
     this.runTable(this.dsetor,this.year);
   }
   ngOnInit() {
@@ -57,6 +59,8 @@ export class DashboardComponent implements OnInit {
         this.dtahun=dyear;
         this.year =year;
         this.runTable([...v],year);
+        this.runGrafik([...v],year);
+
         ;
       },
     });  
@@ -97,7 +101,7 @@ export class DashboardComponent implements OnInit {
       });
     }
   }
-  runTable(fdt:any,year:string){
+  runGrafik(fdt:any,year:string){
     const dtotBulan = [...this.bulan].map((v,i) => {
       let tot = 0;
       [...this.dsetor].forEach(v1 => { 
@@ -171,5 +175,8 @@ export class DashboardComponent implements OnInit {
 
         }
     };
+  }
+  runTable(fdt:any,year:string){
+    this.dgrafik= [...this.dsetor].filter(v1 => String(v1.dateS).substring(0,4)==year);
   }
 }

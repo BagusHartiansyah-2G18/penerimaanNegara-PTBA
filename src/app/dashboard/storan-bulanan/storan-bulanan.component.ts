@@ -150,11 +150,13 @@ export class StoranBulananComponent implements OnInit{
 
 
       model.kdSetoran=this.dstor[this.dform.idt].kdSetoran; 
+      model.kdUser=this.dstor[this.dform.idt].kdUser; 
 
       this.estor.updsetor(model).subscribe({
           next: (v) => {  
             this.dstor=[...v];
             this.reset()
+            this.toast.success("Berhasil memperbarui data","Informasi");
           },
       });  
     }
@@ -162,12 +164,14 @@ export class StoranBulananComponent implements OnInit{
   clk_setDel(i:number){
     const model =<Msetoran>{}; 
     model.kdSetoran=this.dstor[i].kdSetoran; 
+    model.kdUser=this.dstor[i].kdUser; 
 
     this.estor.delsetor(model).subscribe({
         next: (v) => {  
           this.dstor = [...this.dstor].filter((v1,i1)=>i1!=i);
           this.onc_searchList();
           this.reset()
+          this.toast.success("Berhasil menghapus data","Informasi");
         },
     });  
   }
