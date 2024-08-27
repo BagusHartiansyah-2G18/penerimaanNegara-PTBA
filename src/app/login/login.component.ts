@@ -57,18 +57,25 @@ export class LoginComponent implements OnInit {
 
   login() { 
     if ( this.username &&  this.pass) {
-        if(String(this.username.value).length < 10 ){
-          this.toast.error('Username sebanyak 10 digit', 'Toastr fun!'); 
-        } 
-        this.ex.auth(String(this.username.value),String(this.pass.value)).subscribe({
-          next: (v) => {  
-            // this.router.navigateByUrl("/dash");
+      if(String(this.username.value).length < 10 ){
+        this.toast.error('Username sebanyak 10 digit', 'Error'); 
+      } 
+      this.ex.auth(String(this.username.value),String(this.pass.value)).subscribe({
+        next: (v:any) => {  
+          if(v.access_token=='0'){
+            this.toast.error('Usernama dan password, Tidak ditemukan', 'Error'); 
+          }else{
+            
+            this.ex.storeToken(JSON.stringify(v));
             window.location.href ="/dash";
-          },
-        }); 
-    }else{
-      this.toast.error('Mohon Entri Usernama dan password !!!', 'Toastr fun!'); 
-    }
+          }
+          // this.router.navigateByUrl("/dash");
+          // 
+        },
+      }); 
+  }else{
+    this.toast.error('Mohon Entri Usernama dan password !!!', 'Error'); 
+  }
 
   }
 }

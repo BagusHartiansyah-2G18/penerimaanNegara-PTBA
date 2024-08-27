@@ -28,7 +28,6 @@ export class Elogin { // exec yang berhubungan dengan login
     return this._httpClient
       .post<Mlogin[]>(`${Mbase.url("auth/login")}`,{username,password}) 
       .pipe(map(v =>{  
-        this.storeToken(JSON.stringify(v));
         return v; 
       })); 
   }
