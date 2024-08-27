@@ -43,7 +43,7 @@
                 </div>
                 <div class=" ">
                     <label for="firstName" class="form-label">Pilih Role Access</label>
-                    <select class="form-select mb-2" [value]="kdRA"  aria-label="Default select example" (change)="onchanged($event)">
+                    <select class="form-select mb-2" [ngModel]="kdRA"  aria-label="Default select example" (change)="onchanged($event)">
                         <option value="">Belum dipilih</option>
                         <option *ngFor="let option of drole; let i=index" value="{{option.kdRA}}">
                             {{option.nmRA}}

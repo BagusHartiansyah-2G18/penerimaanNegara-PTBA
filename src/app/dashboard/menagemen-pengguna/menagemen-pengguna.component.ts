@@ -85,8 +85,8 @@ export class MenagemenPenggunaComponent implements OnInit {
       on:1,
       ins:0,
       idt:ind
-    }
-
+    } 
+    
     this.kdRA=kdRA; 
     
     this.selectedValue = [...this.dkab].filter(v=>v.kdProv == kdProv && v.kdKab==kdKab)[0]; 
@@ -100,11 +100,17 @@ export class MenagemenPenggunaComponent implements OnInit {
       model.nama = String(this.nama.value);
       model.username = String(this.username.value);
       model.pass = String(this.pass.value);
-
-      model.kdRA = String(this.kdRA);   
-      
+ 
       const dawal = [...this.duser][this.dform.idt];  
+
+      if(this.user1){ // true am PPN
+        model.kdRA = String(this.kdRA); 
+      }else{
+        model.kdRA = String(dawal.kdRA); 
+      } 
       model.kdUser = String(dawal.kdUser); 
+       
+      
       this.epengguna.updPengguna(model)?.subscribe({
           next: (v) => {  
             this.duser=[...v]; 
